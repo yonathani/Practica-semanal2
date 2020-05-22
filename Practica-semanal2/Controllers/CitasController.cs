@@ -10,11 +10,13 @@ using Practica_semanal2.Models;
 
 namespace Practica_semanal2.Controllers
 {
+    
     public class CitasController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Citas
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Citas.ToList());
@@ -46,7 +48,7 @@ namespace Practica_semanal2.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Nombre,Descripcion,Cantidad,Status")] Cita Citas)
+        public ActionResult Create([Bind(Include = "id,Nombre,Tipo_cafe,Descripcion,Cantidad,Status")] Cita Citas)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +80,7 @@ namespace Practica_semanal2.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Nombre,Descripcion,Cantidad,Status")] Cita cita)
+        public ActionResult Edit([Bind(Include = "id,Nombre,Tipo_cafe,Descripcion,Cantidad,Status")] Cita cita)
         {
             if (ModelState.IsValid)
             {

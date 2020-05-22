@@ -3,7 +3,7 @@ namespace Practica_semanal2.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Citas : DbMigration
+    public partial class citas : DbMigration
     {
         public override void Up()
         {
@@ -13,6 +13,7 @@ namespace Practica_semanal2.Migrations
                     {
                         id = c.Int(nullable: false, identity: true),
                         Nombre = c.String(),
+                        Tipo_cafe = c.String(),
                         Descripcion = c.String(),
                         Cantidad = c.Int(nullable: false),
                         Status = c.String(),

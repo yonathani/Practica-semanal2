@@ -7,13 +7,13 @@ namespace Practica_semanal2.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class Citas : IMigrationMetadata
+    public sealed partial class citas : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Citas));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(citas));
         
         string IMigrationMetadata.Id
         {
-            get { return "202005210347270_citas"; }
+            get { return "202005212246341_citas"; }
         }
         
         string IMigrationMetadata.Source
