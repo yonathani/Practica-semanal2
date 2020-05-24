@@ -21,6 +21,7 @@ namespace Practica_semanal2.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Cita> Citas { get; set; }
+        public DbSet<Genero> Generos { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

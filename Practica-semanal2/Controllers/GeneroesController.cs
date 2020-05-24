@@ -10,114 +10,108 @@ using Practica_semanal2.Models;
 
 namespace Practica_semanal2.Controllers
 {
-    public class CitasController : Controller
+    public class GeneroesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Citas
+        // GET: Generoes
         [Authorize]
         public ActionResult Index()
         {
-           
-        var citas = db.Citas.Include(c => c.Genero);
-            return View(citas.ToList());
+            return View(db.Generos.ToList());
         }
 
-        // GET: Citas/Details/5
+        // GET: Generoes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cita cita = db.Citas.Find(id);
-            if (cita == null)
+            Genero genero = db.Generos.Find(id);
+            if (genero == null)
             {
                 return HttpNotFound();
             }
-            return View(cita);
+            return View(genero);
         }
 
-        // GET: Citas/Create
+        // GET: Generoes/Create
         public ActionResult Create()
         {
-            ViewBag.GeneroId = new SelectList(db.Generos, "Id", "Nombre");
             return View();
         }
 
-        // POST: Citas/Create
+        // POST: Generoes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Nombre,GeneroId,Tipo_cafe,Descripcion,Cantidad,Status")] Cita cita)
+        public ActionResult Create([Bind(Include = "Id,Nombre,Detalle,Precio")] Genero genero)
         {
             if (ModelState.IsValid)
             {
-                db.Citas.Add(cita);
+                db.Generos.Add(genero);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.GeneroId = new SelectList(db.Generos, "Id", "Nombre", cita.GeneroId);
-            return View(cita);
+            return View(genero);
         }
 
-        // GET: Citas/Edit/5
+        // GET: Generoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cita cita = db.Citas.Find(id);
-            if (cita == null)
+            Genero genero = db.Generos.Find(id);
+            if (genero == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.GeneroId = new SelectList(db.Generos, "Id", "Nombre", cita.GeneroId);
-            return View(cita);
+            return View(genero);
         }
 
-        // POST: Citas/Edit/5
+        // POST: Generoes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Nombre,GeneroId,Tipo_cafe,Descripcion,Cantidad,Status")] Cita cita)
+        public ActionResult Edit([Bind(Include = "Id,Nombre,Detalle,Precio")] Genero genero)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cita).State = EntityState.Modified;
+                db.Entry(genero).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.GeneroId = new SelectList(db.Generos, "Id", "Nombre", cita.GeneroId);
-            return View(cita);
+            return View(genero);
         }
 
-        // GET: Citas/Delete/5
+        // GET: Generoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Cita cita = db.Citas.Find(id);
-            if (cita == null)
+            Genero genero = db.Generos.Find(id);
+            if (genero == null)
             {
                 return HttpNotFound();
             }
-            return View(cita);
+            return View(genero);
         }
 
-        // POST: Citas/Delete/5
+        // POST: Generoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Cita cita = db.Citas.Find(id);
-            db.Citas.Remove(cita);
+            Genero genero = db.Generos.Find(id);
+            db.Generos.Remove(genero);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
